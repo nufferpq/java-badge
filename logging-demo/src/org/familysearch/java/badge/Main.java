@@ -1,82 +1,16 @@
 package org.familysearch.java.badge;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.Date;
-import java.util.Enumeration;
-
 public class Main {
-  private final Logger slf4jLogger = LoggerFactory.getLogger(Main.class);
-  private final String ipAddress = getIPAddress();
-  private final String hostName = getHostName();
-  private final String threadLabel = getThreadLabel();
-
-  // got this from http://stackoverflow.com/questions/7348711/recommended-way-to-get-hostname-in-java
-  private String getHostName(){
-    String hostName;
-    try {
-      hostName = InetAddress.getLocalHost().getHostName();
-    } catch (UnknownHostException e){
-    hostName = null;
-    }
-    return hostName;
-  }
-
-  // got this code from http://stackoverflow.com/questions/8083479/java-getting-my-ip-address
-  private String getIPAddress(){
-    String ip=null;
-    try {
-      Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-      while (interfaces.hasMoreElements()) {
-        NetworkInterface iface = interfaces.nextElement();
-        // filters out 127.0.0.1 and inactive interfaces
-        if (iface.isLoopback() || !iface.isUp())
-          continue;
-
-        Enumeration<InetAddress> addresses = iface.getInetAddresses();
-        while(addresses.hasMoreElements()) {
-          InetAddress addr = addresses.nextElement();
-          ip = addr.getHostAddress();
-          System.out.println(iface.getDisplayName() + " " + ip);
-        }
-      }
-    } catch (SocketException e) {
-      ip = null;
-    }
-    return ip;
-  }
-
-  private String getThreadLabel() {
-    return Thread.currentThread().getName() + " [id=" + Thread.currentThread().getId() + "] [priority=" + Thread.currentThread().getPriority() + "]";
-  }
-
-  private void logInfo(String message){
-    slf4jLogger.info("timestamp=\"{}\" hostname=\"{}\" ip=\"{}\" message=\"{}\"", new Date(), hostName, ipAddress, message);
-  }
-
-  private void logWarn(String message){
-    slf4jLogger.warn("timestamp=\"{}\" hostname=\"{}\" ip=\"{}\" message=\"{}\"", new Date(), hostName, ipAddress, message);
-  }
-
-  private void logError(String message){
-    slf4jLogger.error("timestamp=\"{}\" hostname=\"{}\" ip=\"{}\" message=\"{}\"", new Date(), hostName, ipAddress, message);
-  }
-
-  private void logDebug(String message){
-    slf4jLogger.debug("timestamp=\"{}\" hostname=\"{}\" ip=\"{}\" message=\"{}\"", new Date(), hostName, ipAddress, threadLabel, message);
-  }
 
   public static void main( String[] args ) {
-    Main app = new Main();
+    LogHelper log = new LogHelper(Main.class);
 
-    app.logInfo("Logging Info");
-    app.logWarn("Logging Warn");
-    app.logError("Logging Error");
-    app.logDebug("Logging Debug");
+    log.logInfo("Logging Info");
+    log.logWarn("Logging Warn");
+    log.logError("Logging Error");
+    log.logDebug("Logging Debug");
+
+    Cool cool = new Cool();
+    cool.coolness("I am so cool!");
   }
 }

@@ -11,14 +11,18 @@
   </appender>
 
   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>ERROR</level>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">  // ERROR, WARN, INFO, DEBUG
+      <level>WARN</level>
     </filter>
     <file>log.txt</file>
     <encoder>
       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger %X- %msg%n</pattern>
     </encoder>
   </appender>
+
+  <logger name="org.familysearch.java.badge.LogCool" additivity="false">
+    <appender-ref ref="FILE" />
+  </logger>
 
   <root level="debug">
     <appender-ref ref="STDOUT" />

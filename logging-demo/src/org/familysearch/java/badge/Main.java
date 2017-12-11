@@ -11,6 +11,6 @@ public class Main {
     log.logDebug("Logging Debug");
 
     Cool cool = new Cool();
-    cool.coolness("I am so cool!");
+    cool.coolness("Macbook-Pro");
   }
 }

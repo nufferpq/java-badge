@@ -12,7 +12,7 @@
 
   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
     <filter class="ch.qos.logback.classic.filter.ThresholdFilter">  // ERROR, WARN, INFO, DEBUG
-      <level>WARN</level>
+      <level>ERROR</level>
     </filter>
     <file>log.txt</file>
     <encoder>
@@ -20,12 +20,12 @@
     </encoder>
   </appender>
 
-  <logger name="org.familysearch.java.badge.LogCool" additivity="false">
+  <logger name="org.familysearch.java.badge.Cool" additivity="false">
     <appender-ref ref="FILE" />
   </logger>
 
-  <root level="debug">
-    <appender-ref ref="STDOUT" />
-    <appender-ref ref="FILE" />
-  </root>
+  <!--<root level="error">-->
+    <!--<appender-ref ref="STDOUT" />-->
+    <!--<appender-ref ref="FILE" />-->
+  <!--</root>-->
 </configuration>

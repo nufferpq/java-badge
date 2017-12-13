@@ -21,7 +21,7 @@ public class Main {
     System.out.println(box6.dumpBox());
 
     Box box7 = new Box(7, 7, 7, 7, 7, "Box Seven");
-    System.out.println(box7.dumpBox());
+    System.out.println(box7.dumpBox("-- Box Seven Dump --"));
 
   }
 }

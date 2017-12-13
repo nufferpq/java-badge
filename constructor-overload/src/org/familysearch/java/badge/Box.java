@@ -65,4 +65,19 @@ public class Box {
     dumpStr.append("------------------");
     return dumpStr.toString();
   }
+
+  String dumpBox(String header) {
+    StringBuilder dumpStr = new StringBuilder(header + "\n");
+    dumpStr.append("| Label: ").append(getBoxLabel()).append("\n");
+    dumpStr.append("| Number: ").append(getBoxNumber()).append("\n");
+    dumpStr.append("| Score: ").append(boxScore).append("\n");
+    dumpStr.append("| Width: ").append(width).append("\n");
+    dumpStr.append("| Height: ").append(height).append("\n");
+    dumpStr.append("| Depth: ").append(depth).append("\n");
+    dumpStr.append("| Volume: ").append(volume()).append("\n");
+    dumpStr.append("------------------");
+    return dumpStr.toString();
+  }
+
+
 }

@@ -23,6 +23,10 @@ public class Main {
     }
   }
 
+  /**
+   * sortFile uses TreeMap to perform the sorting.
+   * @throws Exception
+   */
   public static void sortFile() throws Exception {
     BufferedReader reader = new BufferedReader(new FileReader(fileLocation + "lorem.txt"));
     Map<String, String> map=new TreeMap<String, String>();
@@ -39,6 +43,10 @@ public class Main {
     writer.close();
   }
 
+  /**
+   * SortFile2 uses Collections.sort to perform the sorting.
+   * @throws Exception
+   */
   public static void sortFile2() throws Exception {
     BufferedReader reader = new BufferedReader(new FileReader(fileLocation + "lorem.txt"));
     ArrayList<String> arrayList=new ArrayList();
@@ -48,7 +56,8 @@ public class Main {
     }
     reader.close();
 
-    Collections.sort(arrayList, String.CASE_INSENSITIVE_ORDER);
+    Collections.sort(arrayList, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));  // a to z
+//    Collections.sort(arrayList, String.CASE_INSENSITIVE_ORDER);                            // z to a
 
     FileWriter writer = new FileWriter(fileLocation + "lorem.out.txt");
     for(String val : arrayList){

@@ -1,10 +1,14 @@
 package org.familysearch.java.badge;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Box {
   double width, height, depth;
   int boxNumber;
   int boxScore;
   String boxLabel = "Blank Box Label";
+  Calendar shipTimeStamp = null;
 
   Box(double w, double h, double d, int boxNum, int score, String label) {
     width = w;
@@ -53,6 +57,27 @@ public class Box {
     return boxLabel;
   }
 
+  void shipBox() {
+    shipBox(null);
+  }
+
+  void shipBox(Calendar shipTS) {
+    if (shipTS == null) {
+      this.shipTimeStamp = Calendar.getInstance();
+    }
+    else {
+      this.shipTimeStamp = shipTS;
+    }
+  }
+
+  String getShipDateString() {
+    if (shipTimeStamp == null) {
+      return "None";
+    }
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy hh:mm:ss");
+    return dateFormat.format(shipTimeStamp.getTime());
+  }
+
   String dumpBox() {
     StringBuilder dumpStr = new StringBuilder("-- Box Dump --\n");
     dumpStr.append("| Label: ").append(getBoxLabel()).append("\n");
@@ -62,6 +87,7 @@ public class Box {
     dumpStr.append("| Height: ").append(height).append("\n");
     dumpStr.append("| Depth: ").append(depth).append("\n");
     dumpStr.append("| Volume: ").append(volume()).append("\n");
+    dumpStr.append("| ShipDate: ").append(getShipDateString()).append("\n");
     dumpStr.append("------------------");
     return dumpStr.toString();
   }
@@ -75,6 +101,7 @@ public class Box {
     dumpStr.append("| Height: ").append(height).append("\n");
     dumpStr.append("| Depth: ").append(depth).append("\n");
     dumpStr.append("| Volume: ").append(volume()).append("\n");
+    dumpStr.append("| ShipDate: ").append(getShipDateString()).append("\n");
     dumpStr.append("------------------");
     return dumpStr.toString();
   }

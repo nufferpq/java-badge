@@ -18,9 +18,11 @@ public class Main {
     System.out.println(box5.dumpBox());
 
     Box box6 = new Box(6, 6);
+    box6.shipBox();
     System.out.println(box6.dumpBox());
 
     Box box7 = new Box(7, 7, 7, 7, 7, "Box Seven");
+    box7.shipBox();
     System.out.println(box7.dumpBox("-- Box Seven Dump --"));
 
   }
